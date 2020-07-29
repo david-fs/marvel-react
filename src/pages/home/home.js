@@ -28,17 +28,9 @@ class Home extends Component{
     componentDidMount() {
         this.getBooks(this.state.page)
     }
-    printAParada(book){
-        return(
-            <p key={book.id}>{book.title}</p>
-        )
-    }
-
     handlePageChange(page){
+        this.setState({page: page})
         this.getBooks(page)
-        /*await this.props.getAllBooks(page - 1).then(()=>{
-            this.setState({loading: false})
-        })*/
     }
 
     getBooks (page){
@@ -48,52 +40,55 @@ class Home extends Component{
     render(){
         let books = [];
         let loadingBooks = this.props.loading;
-        let page = this.props.infoBooks.offset / 10;
         this.props.books.forEach(book =>{
             books.push(book)
         })
-        console.log(books);
-        let infoPage = {
-            page: page + 1,
-            total: this.props.infoBooks.total
-        }
         return(
+            <div className="home-container">
+                <React.Fragment>
+                    <div>
 
-            <React.Fragment>
-                {
-                    !loadingBooks ?
-                        books[0]?.map(book =>{
-                            return(
-                                <div key={book.id} className="cards-display">
-                                    <Card
-                                        key={book.id}
-                                        comic={book}
+                    </div>
+                </React.Fragment>
+                <React.Fragment>
+                    <div className="home-cards">
+                        {
+                            !loadingBooks ?
+                                books[0]?.map(book =>{
+                                    return(
+                                        <div key={book.id} className="cards-display">
+                                            <Card
+                                                key={book.id}
+                                                comic={book}
+                                            />
+                                        </div>
+                                        /*
+                                                                        <p key={book.id}>{book.title}</p>
+                                        */
+                                    )
+                                })
+                                :
+                                <p>Carregando....</p>
+                        }
+                    </div>
+                    <div className="pagination-position">
+                        {
+                            books.length > 0 ?
+                                <div style={{justifyContent:"center"}}>
+                                    <Pagination
+                                        activePage={this.state.page}
+                                        itemsCountPerPage={12}
+                                        totalItemsCount={this.props.infoBooks.total}
+                                        pageRangeDisplayed={6}
+                                        onChange={this.handlePageChange.bind(this)}
                                     />
                                 </div>
-/*
-                                <p key={book.id}>{book.title}</p>
-*/
-                            )
-                        })
-                        :
-                        <p>Carregando....</p>
-                }
-                {
-                    books.length > 0 ?
-                        <div style={{justifyContent:"center"}}>
-                            <Pagination
-                                activePage={infoPage.page}
-                                itemsCountPerPage={12}
-                                totalItemsCount={infoPage.total}
-                                pageRangeDisplayed={6}
-                                onChange={this.handlePageChange.bind(this)}
-                            />
-                        </div>
-
-                        :
-                        <div/>
-                }
-            </React.Fragment>
+                                :
+                                <div/>
+                        }
+                    </div>
+                </React.Fragment>
+            </div>
         )
     }
 }

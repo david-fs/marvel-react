@@ -20,9 +20,7 @@ class HttpRequest {
     async Get(urlApi, param = {}) {
         try {
             const get = HttpRequest.instance().get(urlApi, param);
-            store.dispatch({ type: ON_LOADING });
             const result = await get;
-            store.dispatch({ type: ON_LOADED });
             return result;
         } catch (error) {
             store.dispatch({ type: ON_LOADED });

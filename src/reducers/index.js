@@ -14,11 +14,6 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 loading: true
             };
-        /*case ON_LOADED:
-            return {
-                ...state,
-                loading: false
-            };*/
         case GET_ALL_BOOKS:
             return {
                 ...state,

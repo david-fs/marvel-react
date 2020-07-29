@@ -1,4 +1,11 @@
-.cards-display{
-  display: inline-flex;
-  margin: 20px 5px;
+.home-container{
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 70px);
+  justify-content: space-between;
+  .cards-display{
+    display: inline-flex;
+    margin: 20px 5px;
+  }
 }
+
