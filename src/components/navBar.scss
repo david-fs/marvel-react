@@ -1,0 +1,49 @@
+/* HEADER */
+header {
+  background: black;
+  display: flex !important;
+  position: fixed;
+  align-items: center;
+  width: 100%;
+  min-height: 70px;
+  place-content: space-between;
+  .name{
+    background-color: #eb2328;
+    margin-left: 20px;
+    > p {
+      font-weight: bolder;
+      color: white;
+      font-size: 25px;
+      margin: 0;
+      padding: 5px;
+    }
+  }
+  .cart-area {
+    display: inline-flex;
+    margin-right: 20px;
+    text-align: right;
+    color: white;
+    .items-count{
+      margin-right: 10px;
+      p{
+        margin: 0;
+      }
+    }
+    .icon-place{
+      p{
+        margin: 0;
+      }
+    }
+  }
+}
+
+
+
+
+.logout-button{
+  border-radius: 5px;
+  border: solid 1px white;
+  background: white;
+  color: rgb(73, 176, 236);
+  margin-left: 50px;
+}
