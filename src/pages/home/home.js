@@ -10,7 +10,7 @@ import './home.scss'
 const mapDispatchToProps = dispatch => {
     return {
         getAllBooks: (page) => dispatch(getAllBooks(page)),
-        getBooksByName: (name) => dispatch(getBooksByName(name))
+        getBooksByName: (name, page) => dispatch(getBooksByName(name, page))
     }
 }
 const mapStateToProps = state => {
@@ -34,7 +34,11 @@ class Home extends Component{
     }
     handlePageChange(page){
         this.setState({page: page})
-        this.getBooks(page)
+        if (this.state.search){
+            this.props.getBooksByName(this.state.search, page -1)
+        } else {
+            this.getBooks(page)
+        }
     }
 
     getBooks (page){
@@ -43,16 +47,17 @@ class Home extends Component{
 
     searchOnChange = (value) => {
         this.setState({ search: value });
-        if (value.length > 2) {
+        if (value.length > 0) {
             if (this.state.searchOnChangeTimeout) {
                 clearTimeout(this.state.searchOnChangeTimeout);
             }
             const timeout = setTimeout(() => {
                 this.setState({ searchOnChangeTimeout: null });
-                this.props.getBooksByName(value);
+                this.props.getBooksByName(value, 0);
             }, 300);
             this.setState({ searchOnChangeTimeout: timeout });
         } else if (value.length === 0){
+            this.setState({page: 1})
             this.getBooks(1)
         }
     }
@@ -92,9 +97,6 @@ class Home extends Component{
                                                 comic={book}
                                             />
                                         </div>
-                                        /*
-                                                                        <p key={book.id}>{book.title}</p>
-                                        */
                                     )
                                 })
                                 :

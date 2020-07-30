@@ -23,13 +23,15 @@ export function getAllBooks(page) {
     };
 };
 
-export function getBooksByName(name) {
+export function getBooksByName(name, page) {
     const limit = 12
+    console.log(page);
+    const offset = page * limit
     store.dispatch({
         type: ON_LOADING,
     });
     return dispatch => {
-        HttpGet('/v1/public/comics?apikey=7edb1622ef4343dd804c55d510932e87&limit='+limit+'&hasDigitalIssue=true&titleStartsWith='+name)
+        HttpGet('/v1/public/comics?apikey=7edb1622ef4343dd804c55d510932e87&limit='+limit+'&offset='+offset+'&hasDigitalIssue=true&titleStartsWith='+name)
             .then(result => {
                 if (result.status === 200) {
                     dispatch({
