@@ -1,0 +1,21 @@
+.inputSearch{
+  input{
+    border-radius: 5px;
+    border: 2px solid black;
+    width: 40vw;
+    height: 5vw;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    &:focus {
+      outline: thin dotted;
+      outline: 0px auto -webkit-focus-ring-color;
+      outline-offset: 0px;
+    }
+  }
+  ::placeholder{
+    color: gray;
+    font-size: 20px;
+  }
+
+}

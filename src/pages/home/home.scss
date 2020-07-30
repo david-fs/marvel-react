@@ -3,6 +3,19 @@
   flex-direction: column;
   min-height: calc(100vh - 70px);
   justify-content: space-between;
+  .serch-field{
+    margin: 25px 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .info{
+    span{
+      font-size: 35px;
+      color: black;
+      font-weight: bolder;
+    }
+  }
   .cards-display{
     display: inline-flex;
     margin: 20px 5px;

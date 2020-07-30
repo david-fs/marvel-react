@@ -1,14 +1,16 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import {getAllBooks} from "../../actions/getActions";
+import {getAllBooks, getBooksByName} from "../../actions/getActions";
 import Pagination from "react-js-pagination";
 import Card from "./components/ComicCard";
+import SearchInput from "./components/searchInput";
 import './home.scss'
 
 
 const mapDispatchToProps = dispatch => {
     return {
-        getAllBooks: (page) => dispatch(getAllBooks(page))
+        getAllBooks: (page) => dispatch(getAllBooks(page)),
+        getBooksByName: (name) => dispatch(getBooksByName(name))
     }
 }
 const mapStateToProps = state => {
@@ -24,6 +26,8 @@ const initialPage = 1;
 class Home extends Component{
     state = {
         page: initialPage,
+        search: '',
+        searchOnChangeTimeout: null,
     }
     componentDidMount() {
         this.getBooks(this.state.page)
@@ -37,6 +41,22 @@ class Home extends Component{
         this.props.getAllBooks(page - 1)
     }
 
+    searchOnChange = (value) => {
+        this.setState({ search: value });
+        if (value.length > 2) {
+            if (this.state.searchOnChangeTimeout) {
+                clearTimeout(this.state.searchOnChangeTimeout);
+            }
+            const timeout = setTimeout(() => {
+                this.setState({ searchOnChangeTimeout: null });
+                this.props.getBooksByName(value);
+            }, 300);
+            this.setState({ searchOnChangeTimeout: timeout });
+        } else if (value.length === 0){
+            this.getBooks(1)
+        }
+    }
+
     render(){
         let books = [];
         let loadingBooks = this.props.loading;
@@ -46,8 +66,18 @@ class Home extends Component{
         return(
             <div className="home-container">
                 <React.Fragment>
-                    <div>
-
+                    <div className="serch-field">
+                        <SearchInput
+                            searchOnChange={this.searchOnChange}
+                        />
+                        <div className="info">
+                            {
+                                this.props.infoBooks.total?
+                                    <span>{this.props.infoBooks.total} total de revistas</span>
+                                    :
+                                    <div/>
+                            }
+                        </div>
                     </div>
                 </React.Fragment>
                 <React.Fragment>

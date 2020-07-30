@@ -21,4 +21,23 @@ export function getAllBooks(page) {
             })
             .catch(error => console.log(error));
     };
+};
+
+export function getBooksByName(name) {
+    const limit = 12
+    store.dispatch({
+        type: ON_LOADING,
+    });
+    return dispatch => {
+        HttpGet('/v1/public/comics?apikey=7edb1622ef4343dd804c55d510932e87&limit='+limit+'&hasDigitalIssue=true&titleStartsWith='+name)
+            .then(result => {
+                if (result.status === 200) {
+                    dispatch({
+                        type: GET_ALL_BOOKS,
+                        payload: result.data.data
+                    });
+                }
+            })
+            .catch(error => console.log(error));
+    };
 }
