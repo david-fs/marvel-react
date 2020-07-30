@@ -100,7 +100,7 @@ class Home extends Component{
                                     )
                                 })
                                 :
-                                <p>Carregando....</p>
+                                <img src={require('../../static/loading-marvel.gif')} alt=""/>
                         }
                     </div>
                     <div className="pagination-position">
