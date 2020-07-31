@@ -11,6 +11,7 @@ const initialState = {
     infoBooks: {},
     loading: false,
     cart: [],
+    cartValue: 0,
     quantityCart: 0
 };
 
@@ -39,13 +40,15 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 cart: insertBookInCart(state.cart, action.payload),
-                quantityCart: increaseQuatityCart(state.quantityCart)
+                quantityCart: increaseQuatityCart(state.quantityCart),
+                cartValue: increaseCartValue(state.cartValue, action.payload)
             };
         case REMOVE_BOOK_IN_CART:
             return {
                 ...state,
                 cart: removeBookInCart(state.cart, action.payload),
-                quantityCart: decreaseQuatityCart(state.quantityCart)
+                quantityCart: decreaseQuatityCart(state.quantityCart),
+                cartValue: decreaseCartValue(state.cartValue, action.payload)
             }
         default:
             return state;
@@ -69,6 +72,9 @@ function insertBookInCart(stateCart, cart) {
 function increaseQuatityCart(quantity) {
     return quantity + 1
 }
+function increaseCartValue(stateValue, book) {
+    return stateValue + book?.prices[0]?.price;
+}
 
 function removeBookInCart(stateCart, cart) {
     let index = -1;
@@ -90,6 +96,9 @@ function removeBookInCart(stateCart, cart) {
 }
 function decreaseQuatityCart(quantity) {
     return quantity - 1
+}
+function decreaseCartValue(stateValue, book) {
+    return stateValue - book?.prices[0]?.price;
 }
 
 export default rootReducer;

@@ -12,11 +12,6 @@ import ComicImage from "../../../components/comicImage";
 import Icon from "@material-ui/core/Icon";
 import {insertBook, removeBook} from "../../../actions/actions";
 
-const mapStateToProps = state => {
-    return {
-        cart: state.cart
-    };
-};
 const mapDispatchToProps = dispatch => {
     return {
         insertBook: (book) => dispatch(insertBook(book)),
@@ -26,6 +21,7 @@ const mapDispatchToProps = dispatch => {
 class ItemInfo extends React.Component {
     render() {
         let elements = [...this.props.cart];
+
 
         return (
             <React.Fragment>
@@ -50,11 +46,11 @@ class ItemInfo extends React.Component {
                                     <TableCell align="left" className="second-column">{row.title}</TableCell>
                                     <TableCell align="left">{row.prices[0].price}</TableCell>
                                     <TableCell align="left">
-                                        <Icon className="icon" style={{color: "red"}} onClick={() => this.props.removeBook(row)}>remove_circle_outline</Icon>
+                                        <Icon className="icon" style={{color: "red"}} onClick={() => this.props.decreaseBookQuantity(row)}>remove_circle_outline</Icon>
                                         <span className="quantity">{row.quantity}</span>
-                                        <Icon className="icon" style={{color: "green"}} onClick={() => this.props.insertBook(row)}>add_circle_outline</Icon>
+                                        <Icon className="icon" style={{color: "green"}} onClick={() => this.props.increaseBookQuantity(row)}>add_circle_outline</Icon>
                                     </TableCell>
-                                    <TableCell align="left">{row.prices[0].price * row.quantity}</TableCell>
+                                    <TableCell align="left">{parseFloat((row.prices[0].price * row.quantity).toFixed(2))}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -64,4 +60,4 @@ class ItemInfo extends React.Component {
         )
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ItemInfo)
+export default connect(mapDispatchToProps)(ItemInfo)
