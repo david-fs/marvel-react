@@ -9,45 +9,59 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ComicImage from "../../../components/comicImage";
+import Icon from "@material-ui/core/Icon";
+import {insertBook, removeBook} from "../../../actions/actions";
 
 const mapStateToProps = state => {
     return {
         cart: state.cart
     };
 };
-
+const mapDispatchToProps = dispatch => {
+    return {
+        insertBook: (book) => dispatch(insertBook(book)),
+        removeBook: (book) => dispatch(removeBook(book))
+    }
+}
 class ItemInfo extends React.Component {
-
     render() {
+        let elements = [...this.props.cart];
+
         return (
-            <TableContainer component={Paper}>
-                <Table size="small" aria-label="a dense table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Capa</TableCell>
-                            <TableCell align="left">Título</TableCell>
-                            <TableCell align="left">Valor unitário</TableCell>
-                            <TableCell align="left">Quantidade</TableCell>
-                            <TableCell align="left">Valor total</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.props.cart.map((row) => (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    <ComicImage
-                                        thumbnail={row.thumbnail.path + '.' + row.thumbnail.extension}/>
-                                </TableCell>
-                                <TableCell align="left" className="second-column">{row.title}</TableCell>
-                                <TableCell align="left">{row.prices[0].price}</TableCell>
-                                <TableCell align="left">4</TableCell>
-                                <TableCell align="left">5</TableCell>
+            <React.Fragment>
+                <TableContainer component={Paper}>
+                    <Table size="small" aria-label="a dense table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Capa</TableCell>
+                                <TableCell align="left">Título</TableCell>
+                                <TableCell align="left">Valor unitário</TableCell>
+                                <TableCell align="left">Quantidade</TableCell>
+                                <TableCell align="left">Valor total</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {elements.map((row) => (
+                                <TableRow key={row.id}>
+                                    <TableCell component="th" scope="row">
+                                        <ComicImage
+                                            thumbnail={row.thumbnail.path + '.' + row.thumbnail.extension}/>
+                                    </TableCell>
+                                    <TableCell align="left" className="second-column">{row.title}</TableCell>
+                                    <TableCell align="left">{row.prices[0].price}</TableCell>
+                                    <TableCell align="left">
+                                        <Icon className="icon" style={{color: "red"}} onClick={() => this.props.removeBook(row)}>remove_circle_outline</Icon>
+                                        <span className="quantity">{row.quantity}</span>
+                                        <Icon className="icon" style={{color: "green"}} onClick={() => this.props.insertBook(row)}>add_circle_outline</Icon>
+                                    </TableCell>
+                                    <TableCell align="left">{row.prices[0].price * row.quantity}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </React.Fragment>
         )
     }
 }
-export default connect(mapStateToProps)(ItemInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(ItemInfo)

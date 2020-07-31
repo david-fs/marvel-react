@@ -71,9 +71,11 @@ export function insertBook(book) {
 
 }
 
-export function removeBook(bookId) {
-    store.dispatch({
-        type: REMOVE_BOOK_IN_CART,
-        payload: bookId
-    });
+export function removeBook(book) {
+    return dispatch =>{
+        dispatch({
+            type: REMOVE_BOOK_IN_CART,
+            payload: book
+        });
+    }
 }

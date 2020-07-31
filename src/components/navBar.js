@@ -7,11 +7,14 @@ import Icon from "@material-ui/core/Icon";
 
 const mapStateToProps = state => {
     return {
-        cart: state.cart
+        cart: state.cart,
+        quantity: state.quantityCart
     };
 };
 class NavBar extends React.Component{
+
     render() {
+
         return (
             <header>
                 <React.Fragment>
@@ -28,8 +31,8 @@ class NavBar extends React.Component{
                         <React.Fragment>
                             <div className="items-count">
                                 {
-                                    this.props.cart.length?
-                                        <p>{this.props.cart.length} itens no carrinho</p>
+                                    this.props.cart?.length?
+                                        <p>{this.props.quantity} itens no carrinho</p>
                                         :
                                         <p>Carrinho vazio</p>
                                 }
