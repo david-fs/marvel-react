@@ -1,9 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import ComicImage from "../../../components/comicImage";
 import './ComicCard.scss'
+import {insertBook} from "../../../actions/actions";
 
+const mapDispatchToProps = dispatch => {
+    return {
+        insertBook: (book) => dispatch(insertBook(book))
+    }
+}
 class ComicCard extends React.Component{
-
     render() {
         return (
             <div className="comicCard">
@@ -25,7 +32,7 @@ class ComicCard extends React.Component{
 
                 </div>
                 <div className="buy">
-                    <button>
+                    <button onClick={() => this.props.putBookInTheCart(this.props.comic)}>
                         COMPRAR
                     </button>
                 </div>
@@ -34,4 +41,4 @@ class ComicCard extends React.Component{
     }
 }
 
-export default ComicCard
+export default connect(mapDispatchToProps)(ComicCard)

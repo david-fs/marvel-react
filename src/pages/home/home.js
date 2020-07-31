@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import {getAllBooks, getBooksByName} from "../../actions/getActions";
+import {getAllBooks, getBooksByName, insertBook} from "../../actions/actions";
 import Pagination from "react-js-pagination";
 import Card from "./components/ComicCard";
 import SearchInput from "./components/searchInput";
@@ -10,14 +10,16 @@ import './home.scss'
 const mapDispatchToProps = dispatch => {
     return {
         getAllBooks: (page) => dispatch(getAllBooks(page)),
-        getBooksByName: (name, page) => dispatch(getBooksByName(name, page))
+        getBooksByName: (name, page) => dispatch(getBooksByName(name, page)),
+        insertBook: (book) => dispatch(insertBook(book))
     }
 }
 const mapStateToProps = state => {
     return {
         books: state.books,
         infoBooks: state.infoBooks,
-        loading: state.loading
+        loading: state.loading,
+        cart: state.cart
     };
 };
 
@@ -29,9 +31,12 @@ class Home extends Component{
         search: '',
         searchOnChangeTimeout: null,
     }
+
     componentDidMount() {
+        console.log(this.props);
         this.getBooks(this.state.page)
     }
+
     handlePageChange(page){
         this.setState({page: page})
         if (this.state.search){
@@ -62,6 +67,10 @@ class Home extends Component{
         }
     }
 
+    putBookInTheCart = (book) => {
+        this.props.insertBook(book)
+    }
+
     render(){
         let books = [];
         let loadingBooks = this.props.loading;
@@ -77,7 +86,7 @@ class Home extends Component{
                         />
                         <div className="info">
                             {
-                                this.props.infoBooks.total?
+                                !loadingBooks?
                                     <span>{this.props.infoBooks.total} total de revistas</span>
                                     :
                                     <div/>
@@ -95,6 +104,7 @@ class Home extends Component{
                                             <Card
                                                 key={book.id}
                                                 comic={book}
+                                                putBookInTheCart={this.putBookInTheCart}
                                             />
                                         </div>
                                     )

@@ -1,4 +1,10 @@
-import {GET_ALL_BOOKS, ON_LOADING} from './actionTypes'
+import {
+    GET_ALL_BOOKS,
+    GET_ALL_BOOKS_ERROR,
+    INSERT_BOOK_IN_CART,
+    ON_LOADING,
+    REMOVE_BOOK_IN_CART
+} from './actionTypes'
 import { HttpGet } from "../httpRequest/httpRequest";
 import store from "../store";
 
@@ -19,13 +25,18 @@ export function getAllBooks(page) {
                     });
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                dispatch({
+                    type: GET_ALL_BOOKS_ERROR,
+                    payload: {}
+                });
+                console.log(error)
+            });
     };
 };
 
 export function getBooksByName(name, page) {
     const limit = 12
-    console.log(page);
     const offset = page * limit
     store.dispatch({
         type: ON_LOADING,
@@ -40,6 +51,29 @@ export function getBooksByName(name, page) {
                     });
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                dispatch({
+                    type: GET_ALL_BOOKS_ERROR,
+                    payload: {}
+                });
+                console.log(error)
+            });
     };
+}
+
+export function insertBook(book) {
+    return dispatch =>{
+        dispatch({
+            type: INSERT_BOOK_IN_CART,
+            payload: book
+        });
+    }
+
+}
+
+export function removeBook(bookId) {
+    store.dispatch({
+        type: REMOVE_BOOK_IN_CART,
+        payload: bookId
+    });
 }
