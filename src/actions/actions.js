@@ -3,7 +3,8 @@ import {
     GET_ALL_BOOKS_ERROR,
     INSERT_BOOK_IN_CART,
     ON_LOADING,
-    REMOVE_BOOK_IN_CART
+    REMOVE_BOOK_IN_CART,
+    EDIT_USER
 } from './actionTypes'
 import { HttpGet } from "../httpRequest/httpRequest";
 import store from "../store";
@@ -76,6 +77,15 @@ export function removeBook(book) {
         dispatch({
             type: REMOVE_BOOK_IN_CART,
             payload: book
+        });
+    }
+}
+
+export function editUser(user) {
+    return dispatch =>{
+        dispatch({
+            type: EDIT_USER,
+            payload: user
         });
     }
 }

@@ -3,7 +3,8 @@ import {
     GET_ALL_BOOKS,
     GET_ALL_BOOKS_ERROR,
     INSERT_BOOK_IN_CART,
-    ON_LOADING
+    ON_LOADING,
+    EDIT_USER
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
     loading: false,
     cart: [],
     cartValue: 0,
-    quantityCart: 0
+    quantityCart: 0,
+    user:{}
 };
 
 function rootReducer(state = initialState, action) {
@@ -49,6 +51,11 @@ function rootReducer(state = initialState, action) {
                 cart: removeBookInCart(state.cart, action.payload),
                 quantityCart: decreaseQuatityCart(state.quantityCart),
                 cartValue: decreaseCartValue(state.cartValue, action.payload)
+            }
+        case EDIT_USER:
+            return {
+                ...state,
+                user: {...action.payload}
             }
         default:
             return state;

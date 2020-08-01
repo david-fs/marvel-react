@@ -8,9 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ComicImage from "../../../components/comicImage";
+import ComicImage from "../../../../components/comicImage";
 import Icon from "@material-ui/core/Icon";
-import {insertBook, removeBook} from "../../../actions/actions";
+import {insertBook, removeBook} from "../../../../actions/actions";
 
 const mapDispatchToProps = dispatch => {
     return {

@@ -1,0 +1,38 @@
+.user-info-container{
+  margin-top: 25px;
+  margin-right: 5%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: black;
+  text-align-last: left;
+  min-width: 300px;
+  width: 40vw;
+  span{
+    padding-left: 10px;
+    color: #eb2328;
+    font-size: 20px;
+    span{
+      color: white;
+      font-size: 18px;
+    }
+  }
+  .button-position{
+    padding: 10px;
+    text-align-last: right;
+    button{
+      background-color: #eb2328;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      width: 110px;
+      height: 30px;
+      text-align-last: center;
+      &:focus {
+        outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+        outline-offset: 0px;
+      }
+    }
+  }
+}

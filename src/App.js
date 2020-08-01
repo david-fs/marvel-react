@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import './App.scss';
-import Home from "./pages/home/home";
 import NavBar from "./components/navBar";
+import Home from "./pages/home/home";
+import Cart from "./pages/cart/cart";
+import User from "./pages/user/user";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
 import store from "./store";
-import Cart from "./pages/cart/cart";
 
 class App extends React.Component {
 
@@ -34,6 +35,16 @@ class App extends React.Component {
                           render={props => (
                               <div className="body-margin">
                                   <Cart
+                                      {...props}
+                                  />
+                              </div>
+                          ) }/>
+                      <Route
+                          exact
+                          path="/user"
+                          render={props => (
+                              <div className="body-margin">
+                                  <User
                                       {...props}
                                   />
                               </div>

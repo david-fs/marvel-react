@@ -1,0 +1,46 @@
+.user-container{
+  margin-top: 80px;
+  .form-class{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .input-class{
+      border: solid 2px black;
+      border-radius: 5px;
+      min-height: 40px;
+      min-width: 300px;
+      width: 40vw;
+      margin-bottom: 10px;
+      height: 5vw;
+    }
+  }
+  .button-user {
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
+    width: 40vw;
+    margin: auto;
+    button{
+      background-color: black;
+      border-radius: 5px;
+      border: none;
+      width: 130px;
+      height: 40px;
+      text-align-last: center;
+      &:focus {
+        outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+        outline-offset: 0px;
+      }
+    }
+    .cancel{
+      margin-left: 20px;
+      color: white;
+
+    }
+    .confirm{
+      margin-right: 20px;
+      color: #eb2328;
+    }
+  }
+}

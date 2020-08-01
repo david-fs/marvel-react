@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {getAllBooks, getBooksByName, insertBook} from "../../actions/actions";
 import Pagination from "react-js-pagination";
-import Card from "./components/ComicCard";
-import SearchInput from "./components/searchInput";
+import Card from "./components/ComicCard/ComicCard";
+import SearchInput from "./components/searchInput/searchInput";
 import './home.scss'
 
 
@@ -33,7 +33,6 @@ class Home extends Component{
     }
 
     componentDidMount() {
-        console.log(this.props);
         this.getBooks(this.state.page)
     }
 

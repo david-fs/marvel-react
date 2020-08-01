@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import ComicImage from "../../../components/comicImage";
+import ComicImage from "../../../../components/comicImage";
 import './ComicCard.scss'
-import {insertBook} from "../../../actions/actions";
+import {insertBook} from "../../../../actions/actions";
 
 const mapDispatchToProps = dispatch => {
     return {
