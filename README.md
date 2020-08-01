@@ -42,7 +42,7 @@
     
     Desmontagem: Ocorre quando o componente não é mais necessário e seŕa desmontado do DOM, nesse momento é chamado o método
         componentWillUnmount, que é executado imediatamente antes do componente ser removido.
-## Performance
+### Performance
     Baixo consumo de dados por ser um SPA.
     Componentes pequenos com pouca manipulação de dados.
     Rápida renderização dos componentes por conta dos dados necessários estarem disponíveis em um estado global.
