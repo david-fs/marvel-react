@@ -21,8 +21,7 @@ const mapDispatchToProps = dispatch => {
 }
 class Cart extends React.Component{
 
-    componentDidMount() {
-    }
+
     increaseBookQuantity = (book) =>{
         this.props.insertBook(book)
     }

@@ -22,9 +22,6 @@ class User extends React.Component{
         city: ''
     }
 
-    componentDidMount() {
-    }
-
     editUser = () =>{
         const user = {
             name: this.state.name? this.state.name : this.props.user.name,

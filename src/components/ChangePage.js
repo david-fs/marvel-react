@@ -3,9 +3,7 @@ import Pagination from "react-bootstrap/cjs/Pagination";
 
 
 class ChangePage extends Component{
-    componentDidMount() {
 
-    }
     constructor(props) {
         super(props);
         this.state = {

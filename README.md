@@ -1,4 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requisitos:
+    Busca constante dos produtos ao atualizar o parâmetro de busca.
+    Imagem do produto com boa visualização na lista de produtos
+    Inserir múltiplos produtos no carrinho
+    Aumentar a quantidade de um produto no carrinho
+    Diminuir a quantidade de um produto no carrinho
+    Deleter um produto do carrinho
+    Editar dados do Usuário
+### Funcionamento:
+    NavBar:
+        Clicar no ícone da Marvel será direcionado para a página principal
+        Texto com a quantidade de itens no carrinho de compras
+        Clicar no ícone do carrinho de compras será direcionado para a página do carrinho,
+            onde estão os itens que foram selecionados para compra.
+    HomePage:
+        Input de busca, ao digitar uma entrada a busca será feita pelo nome da revista,
+            usando a entrada como parâmetro.
+        Card de produto, contém as informações básicas do produto.
+        Botão comprar insere o respectivo produto no corrinho de compras quantas vezes
+            a ação de de clique for executada.
+    /cart:
+        lista os produtos selecionados para compra e faz o somatório dos valores
+        Ações disponíveis de aumentar quantidade, diminuir quantidade e excluir produtos.
+        Informações do Usuário.
+        Botão para editar as informações do usuário.
+    /user:
+        Editar as informações do usuário
+        botão cancelar descarta as alterações e retorna para o carrinho.
+        botão confirmar atualiza as informações e retona para o carrinho.    
+### Ciclo de vida
+    Os componentes React possuem quatro fases: Inicialização, Montagem, aAtualização e Desmontagem.
+    
+    Inicialização: Configura o estado inicial e as props caso existam, está ação é fundamental para
+        o bom funcionamento do componente, pois são definidos os "dados" que serão usados no componente.
+        
+    Montagem: Na montagem são disponibilizados métodos que podem ser invocados antes ou depois do componente
+        ter sido montado. ex: 
+            componentDidMount: Executado uma vez depois que o componente é montado no DOM, as chamadas de API
+                devem ser feitas nesse método.
+            render: Responsável por montar o componente no navegador.        
+    Atualização: Ocorre quando um componente que já existe no navegador recebe novas props ou tem alguma atualização no estado.
+    
+    Desmontagem: Ocorre quando o componente não é mais necessário e seŕa desmontado do DOM, nesse momento é chamado o método
+        componentWillUnmount, que é executado imediatamente antes do componente ser removido.
+##Performance
+    Baixo consumo de dados por ser um SPA.
+    Componentes pequenos com pouca manipulação de dados.
+    Rápida renderização dos componentes por conta dos dados necessários estarem disponíveis em um estado global.         
+##This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

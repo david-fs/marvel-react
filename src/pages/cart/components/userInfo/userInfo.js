@@ -4,9 +4,6 @@ import {Link} from "react-router-dom";
 
 class UserInfo extends React.Component{
 
-    componentDidMount() {
-    }
-
     render(){
 
         return(
